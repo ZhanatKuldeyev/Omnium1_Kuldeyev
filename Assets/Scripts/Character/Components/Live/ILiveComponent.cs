@@ -1,12 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public interface ILiveComponent
+public interface IHealthComponent : ICharacterComponent
 {
-    float MaxHealth { get; }
+    public event Action<Character> OnCharacterHealthChange;
+    public event Action<Character> OnCharacterDeath;
 
-    float Health { get; }
 
-    public void SetDamage(float damage);
+    public float Health { get; set; }
+
+    public int HealthMax { get; }
+
+    public bool IsAlive { get; }
 }
+    public interface ICharacterComponent
+    {
+        void Initialize(Character character);
+    }

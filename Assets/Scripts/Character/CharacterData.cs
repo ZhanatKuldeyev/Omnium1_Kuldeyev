@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class CharacterData : MonoBehaviour
@@ -9,6 +8,10 @@ public class CharacterData : MonoBehaviour
     [SerializeField] private Transform characterTransform;
     [SerializeField] private CharacterController characterController;
 
+
+    
+    public int baseHealth;
+    public float baseDamage;
 
     public float DefaultSpeed => speed;
 

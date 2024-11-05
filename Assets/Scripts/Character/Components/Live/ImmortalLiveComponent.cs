@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class ImmortalLiveComponent : ILiveComponent
+public class ImmortalHealthComponent : IHealthComponent
 {
-    float ILiveComponent.MaxHealth { get => 1; set => { } }
-    float ILiveComponent.Health { get => 1; set => { } }
+    float IHealthComponent._MaxHealth { get => 1; set => { } };
+    float IHealthComponent._Health { get => 1; set => { } };
 
     public void SetDamage(float damage)
     {

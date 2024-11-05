@@ -18,7 +18,7 @@ public class Enemyharacter : Character
     {
         base.Start();
 
-        LiveComponent = new ImmortalLiveComponent();
+        HealthComponent = new ImmortalHealthComponent();
         DamageComponent = new CharacterDamageComponent();
     }
 

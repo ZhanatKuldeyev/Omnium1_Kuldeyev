@@ -1,46 +1,47 @@
-using Elasticsearch.Net;
-using System.Collections;
-using System.Collections.Generic;
+
+using System;
+
 using UnityEngine;
 
-public class CharacterLiveComponent : ILiveComponent
+public class CharacterHealthComponent : IHealthComponent
 {
-    private float currentHealth;
+    private Character character;
+    private float _health;
+    private int _healthMax;
 
-    public float MaxHealth => 50; 
-    
+
+    public event Action<Character> OnCharacterHealthChange;
+    public event Action<Character> OnCharacterDeath;
+
 
     public float Health
     {
-        get => currentHealth;
-        private set
+        get => _health;
+        set
         {
-            currentHealth = value;
-            currentHealth = value;
-            if (currentHealth <= 0)
+            _health = Mathf.Clamp(value, 0, _healthMax);
+            OnCharacterHealthChange?.Invoke(character);
 
-            {
-                currentHealth = 0;
-                SetDeath();
-            }
+            if (_health > 0)
+                return;
+
+            _health = 0;
+            OnCharacterDeath?.Invoke(character);
+            Debug.LogError("Character death");
         }
     }
 
-    public CharacterLiveComponent()
-    {
-        Health = MaxHealth;
-    }
+    public int HealthMax =>
+        _healthMax;
 
-    public void SetDamage(float damage)
-    {
-        Health -= damage;
-        Debug.Log("Get damage = " + damage);
-    }
-}
+    public bool IsAlive =>
+        _health > 0;
 
 
-    private void SetDeath()
+    public void Initialize(Character character)
     {
-        Debug.Log("Character is death");
+        this.character = character;
+        _healthMax = character.CharacterData.baseHealth;
+        _health = character.CharacterData.baseHealth;
     }
 }

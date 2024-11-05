@@ -9,7 +9,7 @@ public abstract class Character : MonoBehaviour
 
     public IMovable MovableComponent { get; protected set; }
 
-    public ILiveComponent LiveComponent { get; protected set; }
+    public IHealthComponent HealthComponent { get; protected set; }
 
     public IDamageComponent DamageComponent { get; protected set; }
 
@@ -18,6 +18,9 @@ public abstract class Character : MonoBehaviour
     {
         MovableComponent = new CharacterMovementComponent();
         MovableComponent.Initialize(characterData);
+
+        HealthComponent = new CharacterHealthComponent();
+        HealthComponent.Initialize(this);
     }
 
 

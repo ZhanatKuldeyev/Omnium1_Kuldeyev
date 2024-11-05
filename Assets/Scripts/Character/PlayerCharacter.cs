@@ -8,7 +8,7 @@ public class PlayerCharacter : Character
     { 
         base.Start();
 
-        LiveComponent = new CharacterLiveComponent();
+        HealthComponent = new CharacterHealthComponent();
     }
 
     public override void Update()
