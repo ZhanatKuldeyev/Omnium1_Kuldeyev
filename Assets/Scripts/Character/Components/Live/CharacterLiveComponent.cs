@@ -37,6 +37,26 @@ public class CharacterHealthComponent : IHealthComponent
     public bool IsAlive =>
         _health > 0;
 
+    public float _MaxHealth { get; set; }
+    public float _Health { get; set; }
+
+    public void SetDamage(float damage)
+    {
+        if (damage > _MaxHealth)
+        {
+            _health = 0;
+        }
+        else
+        {
+            if (_health < 0)
+            {
+                _health = 0;
+            }
+
+            _health -= damage;
+        }
+    }
+
 
     public void Initialize(Character character)
     {
