@@ -11,6 +11,9 @@ public interface IHealthComponent : ICharacterComponent
     public int HealthMax { get; }
 
     public bool IsAlive { get; }
+    float _MaxHealth { get; set; }
+    float _Health { get; set; }
+    void SetDamage(float damage);
 }
     public interface ICharacterComponent
     {

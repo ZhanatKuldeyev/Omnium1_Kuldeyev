@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Character : MonoBehaviour
@@ -12,6 +10,7 @@ public abstract class Character : MonoBehaviour
     public IHealthComponent HealthComponent { get; protected set; }
 
     public IDamageComponent DamageComponent { get; protected set; }
+    public CharacterData CharacterData { get => characterData; }
 
 
     public virtual void Start()
