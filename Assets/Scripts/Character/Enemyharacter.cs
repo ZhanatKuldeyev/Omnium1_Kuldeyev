@@ -6,24 +6,43 @@ public class Enemyharacter : Character
 {
     [SerializeField] private AiState currentState;
 
-    [SerializeField]
-    private Character targetCharacter;
 
     private float timeBetweenAttackCounter = 0;
+
+    public override Character CharacterTarget => GameManager.Instance?.CharacterFactory?.PlayerCharacter;
+
+    void Start()
+    {
+        StartCoroutine(WaitForPlayer());
+    }
+
+    IEnumerator WaitForPlayer()
+    {
+        while (GameManager.Instance == null ||
+               GameManager.Instance.CharacterFactory == null ||
+               GameManager.Instance.CharacterFactory.PlayerCharacter == null)
+        {
+            yield return null; // Ждать следующего кадра
+        }
+
+        // Теперь PlayerCharacter точно существует
+    }
+
 
     [SerializeField]
     private AiState aiState;
 
-    public override void Start()
+    public override void Initialize()
     {
-        base.Start();
+        base.Initialize();
 
-        HealthComponent = new ImmortalHealthComponent();
         DamageComponent = new CharacterDamageComponent();
     }
 
     public override void Update()
     {
+        if (CharacterTarget == null) return;
+
         switch (currentState) 
         { 
             case AiState.None:
@@ -31,16 +50,16 @@ public class Enemyharacter : Character
                 break;
 
             case AiState.MoveToTarget:
-                Vector3 direction = targetCharacter.transform.position - transform.position;
+                Vector3 direction = CharacterTarget.transform.position - transform.position;
                 direction.Normalize();
 
                 MovableComponent.Move(direction);
                 MovableComponent.Rotation(direction);
 
-                if (Vector3.Distance(targetCharacter.transform.position, transform.position) < 3
+                if (Vector3.Distance(CharacterTarget.transform.position, transform.position) < 3
                     && timeBetweenAttackCounter <= 0)
                 {
-                    DamageComponent.MakeDamage(targetCharacter);
+                    DamageComponent.MakeDamage(CharacterTarget);
                     timeBetweenAttackCounter = characterData.TimeBetweenAttacks;
                 }
 
