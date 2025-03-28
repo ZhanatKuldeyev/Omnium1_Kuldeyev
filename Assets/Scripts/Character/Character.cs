@@ -1,7 +1,6 @@
 using UnityEngine;
 
-namespace ZombieIo
-{
+
     public abstract class Character : MonoBehaviour
     {
         [SerializeField] protected CharacterType characterType;
@@ -33,4 +32,3 @@ namespace ZombieIo
 
         public abstract void Update();
     }
-}

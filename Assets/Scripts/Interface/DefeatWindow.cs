@@ -25,7 +25,7 @@ public class DefeatWindow : Window
     {
         Hide(true);
         GameManager.Instance.WindowsService.ShowWindow<GameplayWindow>(false);
-        GameManager.Instance.GameStart();
+        GameManager.Instance.StartGame();
     }
 }
 

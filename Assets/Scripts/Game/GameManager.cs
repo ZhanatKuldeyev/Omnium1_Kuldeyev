@@ -2,18 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ZombieIo;
+using ZombieIo.Character.Skills;
 
 public class GameManager : MonoBehaviour
 {
     private ScoreManager scoreManager;
     [SerializeField] private CharacterFactory characterFactory;
     [SerializeField] private WindowsService windowsService;
+    [SerializeField] private SkillService skillService;
+
+    [Space, SerializeField]
+    private GameData _gameData;
+
+    private bool _isGameActive = false;
+    private float _gameTimeSec = 0;
+    private float _spawnEnemyTimeSec = 0;
+
     private float gameSessionTime;
     private float TimeBetweenEnemySpawn;
     public CharacterFactory CharacterFactory => characterFactory;
     public WindowsService WindowsService =>
     windowsService;
     public ScoreManager ScoreManager { get; private set; }
+    public SkillService SkillService => skillService;
+    public SessionExperienceManager SessionExperienceManager { get; private set; }
+
+    public float GameTime =>
+        _gameTimeSec;
+
+
+
+    public bool IsGameActive
+    {
+        get => _isGameActive;
+        set => _isGameActive = value;
+    }
 
 
     private bool isGameActive;
@@ -66,6 +89,7 @@ public class GameManager : MonoBehaviour
 
             gameSessionTime = 0;
             TimeBetweenEnemySpawn = gameData.SpawnEnemyTimeSec;
+
 
             isGameActive = true;
         }

@@ -1,7 +1,5 @@
 using System;
 
-namespace ZombieIo
-{
     public interface IHealthComponent : ICharacterComponent
     {
         public event Action<Character> OnCharacterHealthChange;
@@ -17,4 +15,3 @@ namespace ZombieIo
         float _Health { get; set; }
         void SetDamage(float damage);
     }
-}

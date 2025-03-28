@@ -31,7 +31,7 @@ public class MainMenuWindow : Window
 
     private void StartGameHandler()
     {
-        GameManager.Instance.GameStart();
+        GameManager.Instance.StartGame();
         GameManager.Instance.WindowsService.ShowWindow<GameplayWindow>(false);
         Hide(false);
     }

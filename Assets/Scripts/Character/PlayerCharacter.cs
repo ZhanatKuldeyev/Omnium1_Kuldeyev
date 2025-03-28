@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ZombieIo
-{
     public class PlayerCharacter : Character
     {
         public override Character CharacterTarget
@@ -73,4 +71,3 @@ namespace ZombieIo
 
         }
     }
-}

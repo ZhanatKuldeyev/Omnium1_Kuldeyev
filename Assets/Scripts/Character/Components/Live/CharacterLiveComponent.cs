@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ZombieIo
-{
+
     public class CharacterHealthComponent : IHealthComponent
     {
         private Character selfCharacter;
@@ -65,4 +64,3 @@ namespace ZombieIo
             _health = selfCharacter.CharacterData.baseHealth;
         }
     }
-}
