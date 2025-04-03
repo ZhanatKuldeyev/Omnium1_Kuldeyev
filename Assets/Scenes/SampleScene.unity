@@ -1067,7 +1067,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &595371999
 Transform:
   m_ObjectHideFlags: 0
@@ -2423,7 +2423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1009458093
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2464,6 +2464,7 @@ MonoBehaviour:
   idleAnimationName: 
   closeAnimationName: 
   hiddenAnimationName: 
+  <IsOpened>k__BackingField: 0
   startGameButton: {fileID: 1771011367}
   upgradeButton: {fileID: 1303312623}
   optionsGameButton: {fileID: 1061533015}
@@ -3663,8 +3664,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterFactory: {fileID: 842923849}
-  windowsService: {fileID: 2127299428}
-  skillService: {fileID: 595372000}
   _gameData: {fileID: 0}
   gameData: {fileID: 11400000, guid: b4ca1c25230a309469b1f1d39385b339, type: 2}
 --- !u!1 &1716476937
@@ -4216,7 +4215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2127299427
 Transform:
   m_ObjectHideFlags: 0
@@ -4270,6 +4269,7 @@ MonoBehaviour:
   idleAnimationName: 
   closeAnimationName: 
   hiddenAnimationName: 
+  <IsOpened>k__BackingField: 0
   startGameButton: {fileID: 1771011367}
   upgradeButton: {fileID: 0}
   optionsGameButton: {fileID: 0}

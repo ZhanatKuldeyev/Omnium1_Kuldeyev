@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
     public class PlayerCharacter : Character
@@ -9,30 +7,46 @@ using UnityEngine;
             get
             {
                 Character target = null;
-                float minDistance = float.MaxValue;
-                List<Character> list = GameManager.Instance.CharacterFactory.ActivePool;
-                for (int i = 0; i < list.Count; i++)
+                float nearest = float.MaxValue;
+                var activePool = GameManager.Instance.CharacterFactory.ActivePool;
+                foreach (var activeCharacter in activePool)
                 {
-                    if (list[i].CharacterType == CharacterType.DefaultPlayer)
+                    if (activeCharacter.CharacterType == CharacterType.DefaultPlayer)
                         continue;
 
-                    float distanceBetween = Vector3.Distance(list[i].transform.position, transform.position);
-                    if (distanceBetween < minDistance)
-                    {
-                        target = list[i];
-                        minDistance = distanceBetween;
-                    }
+                    if (!activeCharacter.HealthComponent.IsAlive)
+                        continue;
 
+                    float distance = Vector3.Distance(activeCharacter.transform.position, transform.position);
+                    if (distance < nearest)
+                    {
+                        nearest = distance;
+                        target = activeCharacter;
+                    }
                 }
-                return target;
-            }
+
+            return target;
+
         }
+    }
 
         private void Awake()
         {
             MovableComponent = gameObject.AddComponent<CharacterMovementComponent>();
+
+            if (characterData == null)
+            {
+                Debug.LogError("characterData is NULL in PlayerCharacter!");
+                return;
+            }
+
             MovableComponent.Initialize(characterData);
-        }
+
+            if (MovableComponent == null)
+            {
+            Debug.LogError("MovableComponent не был добавлен!");
+            }
+    }
 
         public override void Initialize()
         {
@@ -40,9 +54,9 @@ using UnityEngine;
 
             HealthComponent = new CharacterHealthComponent();
 
-            //    AttackComponent = new WeaponAttackComponent();
-            //    AttackComponent.Initialize(this);
-        }
+        //    AttackComponent = new WeaponAttackComponent();
+        //    AttackComponent.Initialize(this);
+    }
 
         public override void Update()
         {
@@ -64,10 +78,6 @@ using UnityEngine;
                 if (Input.GetButtonDown("Jump"))
                     DamageComponent.MakeDamage(CharacterTarget);
             }
-
-            MovableComponent.Move(movementVector);
-
-
 
         }
     }

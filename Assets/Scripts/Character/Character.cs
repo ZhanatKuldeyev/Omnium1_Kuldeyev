@@ -19,14 +19,24 @@ using UnityEngine;
 
         public IAnimationComponent AnimationComponent { get; protected set; }
 
+        public IControlComponent ControlComponent { get; protected set; }
 
-        public virtual void Initialize()
+
+        public abstract Character Target { get; }
+
+
+
+    public virtual void Initialize()
         {
             MovableComponent = new CharacterMovementComponent();
-            MovableComponent.Initialize(characterData);
+            MovableComponent.Initialize(this);
 
-            HealthComponent = new CharacterHealthComponent();
-            HealthComponent.Initialize(this);
+		    HealthComponent = new CharacterHealthComponent();
+		    HealthComponent.Initialize(this);
+
+		    AnimationComponent = new CharacterAnimationComponent();
+		    AnimationComponent.Initialize(this);
+
         }
 
 

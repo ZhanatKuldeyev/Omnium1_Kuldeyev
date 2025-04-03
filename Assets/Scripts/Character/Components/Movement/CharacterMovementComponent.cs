@@ -27,6 +27,20 @@ public class CharacterMovementComponent : MonoBehaviour, IMovable
 
     public void Move(Vector3 direction)
     {
+        if (characterData == null)
+        {
+            Debug.LogError("characterData is NULL in CharacterMovementComponent!");
+            return;
+        }
+
+        if (characterData.CharacterController == null)
+        {
+            Debug.LogError("CharacterMovementComponent: CharacterController is NULL!");
+            return;
+        }
+        Debug.Log($"Move() called. CharacterController: {characterData.CharacterController}, DefaultSpeed: {characterData.DefaultSpeed}");
+        characterData.CharacterController.Move(direction * characterData.DefaultSpeed * Time.deltaTime);
+
         if (direction == Vector3.zero)
         {
             character.AnimationComponent.SetValue("Movement", 0);

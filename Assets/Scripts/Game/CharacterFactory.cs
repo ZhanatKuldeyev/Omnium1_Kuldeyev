@@ -43,7 +43,6 @@ public class CharacterFactory : MonoBehaviour
         {
             PlayerCharacter = player;
         }
-        character.Initialize();
 
         return character;
     }

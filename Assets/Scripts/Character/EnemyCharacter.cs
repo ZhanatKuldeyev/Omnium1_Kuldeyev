@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
-public class Enemyharacter : Character
+
+public class EnemyCharacter : Character
 {
     [SerializeField] private AiState currentState;
 
 
     private float timeBetweenAttackCounter = 0;
 
-    public override Character CharacterTarget => GameManager.Instance?.CharacterFactory?.PlayerCharacter;
+    public override Character CharacterTarget =>
+        GameManager.Instance.CharacterFactory.PlayerCharacter;
+
 
     void Start()
     {
@@ -43,8 +47,8 @@ public class Enemyharacter : Character
     {
         if (CharacterTarget == null) return;
 
-        switch (currentState) 
-        { 
+        switch (currentState)
+        {
             case AiState.None:
 
                 break;

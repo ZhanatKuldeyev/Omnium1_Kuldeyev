@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ZombieIo;
-using ZombieIo.Character.Skills;
+using ZombieIo.Input;
+//using ZombieIo.Character.Skills;
 
 public class GameManager : MonoBehaviour
 {
     private ScoreManager scoreManager;
     [SerializeField] private CharacterFactory characterFactory;
-    [SerializeField] private WindowsService windowsService;
-    [SerializeField] private SkillService skillService;
+    //[SerializeField] private WindowsService windowsService;
+    //[SerializeField] private SkillService skillService;
 
     [Space, SerializeField]
     private GameData _gameData;
@@ -21,11 +22,13 @@ public class GameManager : MonoBehaviour
     private float gameSessionTime;
     private float TimeBetweenEnemySpawn;
     public CharacterFactory CharacterFactory => characterFactory;
-    public WindowsService WindowsService =>
-    windowsService;
+    //public WindowsService WindowsService =>
+    //windowsService;
     public ScoreManager ScoreManager { get; private set; }
-    public SkillService SkillService => skillService;
-    public SessionExperienceManager SessionExperienceManager { get; private set; }
+
+    public IInputService InputService { get; private set; }
+    //public SkillService SkillService => skillService;
+    //public SessionExperienceManager SessionExperienceManager { get; private set; }
 
     public float GameTime =>
         _gameTimeSec;
@@ -70,7 +73,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("CharacterFactory не найден в сцене!");
         }
-        windowsService.Initialize();
+        //windowsService.Initialize();
     }
 
     public void StartGame()

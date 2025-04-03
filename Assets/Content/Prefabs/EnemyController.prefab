@@ -79,6 +79,7 @@ MonoBehaviour:
   characterTransform: {fileID: 7095341010786094915}
   characterController: {fileID: 6599573813934490187}
   ScoreManager: 5
+  animator: {fileID: 5866666021909216657, guid: a484af4305909204d8ac7124731639f7, type: 3}
   baseHealth: 5
   baseDamage: 1
 --- !u!114 &8013133093484860128
